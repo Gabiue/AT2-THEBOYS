@@ -91,6 +91,7 @@ function renderizarPergunta() {
     botao.classList.add("opcao-btn");
     botao.textContent = opcao.texto;
     botao.setAttribute("data-index", index);
+    botao.style.setProperty("--opcao-index", String(index));
 
     // Evento de clique com arrow function
     botao.addEventListener("click", () => selecionarOpcao(opcao));
@@ -108,8 +109,18 @@ function renderizarResultado(resultado) {
     "emocional":   "🔴 Emocional"
   };
 
+  const categoriasAria = {
+    "racional":     "Categoria: racional",
+    "meio-termo":   "Categoria: meio termo",
+    "emocional":   "Categoria: emocional"
+  };
+
   resultadoNome.textContent      = personagem.nome;
   resultadoCategoria.textContent = categoriasLabel[categoria] || categoria;
+  resultadoCategoria.setAttribute(
+    "aria-label",
+    categoriasAria[categoria] || `Categoria: ${categoria}`
+  );
   resultadoScore.textContent     = `Pontuação: ${scorePrincipal}`;
   resultadoDescricao.textContent = personagem.descricao;
   resultadoImagem.src            = personagem.imagem;
