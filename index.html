@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Boys — Qual personagem você seria?</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- TELA INICIAL                                                  -->
+  <!-- ============================================================ -->
+  <section id="tela-inicial">
+
+    <div class="tela-inicial__conteudo">
+
+      <div class="tela-inicial__badge">QUIZ OFICIAL</div>
+
+      <h1 class="tela-inicial__titulo">
+        THE BOYS
+      </h1>
+
+      <h2 class="tela-inicial__subtitulo">
+        Qual personagem você seria?
+      </h2>
+
+      <p class="tela-inicial__descricao">
+        Em um mundo onde super-heróis são celebridades corporativas e o poder 
+        corrompe de formas que ninguém quer admitir, todo mundo ocupa um lugar 
+        nessa cadeia. Supes, agentes, executivos, resistência — cada um com sua 
+        lógica, sua fraqueza e seu limite.
+        <br /><br />
+        Responda 10 perguntas e descubra qual dos 9 personagens de The Boys 
+        mais se aproxima da sua forma de pensar, agir e sobreviver.
+      </p>
+
+      <div class="tela-inicial__personagens">
+        <span>Homelander</span>
+        <span>Butcher</span>
+        <span>The Deep</span>
+        <span>A-Train</span>
+        <span>Hughie</span>
+        <span>MM</span>
+        <span>Stan Edgar</span>
+        <span>Noir</span>
+        <span>Victoria</span>
+      </div>
+
+      <button id="btn-iniciar" class="btn-primario">
+        Descobrir meu personagem
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- TELA QUESTIONÁRIO                                             -->
+  <!-- ============================================================ -->
+  <section id="tela-questionario" class="oculto">
+
+    <div class="questionario__container">
+
+      <!-- Cabeçalho com progresso -->
+      <div class="questionario__header">
+        <span id="pergunta-numero" class="questionario__numero">Pergunta 1 de 10</span>
+        <span id="progresso-texto" class="questionario__percentual">10%</span>
+      </div>
+
+      <!-- Barra de progresso -->
+      <div class="progresso-barra__fundo">
+        <div id="barra-progresso" class="progresso-barra__preenchimento"></div>
+      </div>
+
+      <!-- Pergunta -->
+      <div class="questionario__pergunta-container">
+        <p id="pergunta-texto" class="questionario__pergunta"></p>
+      </div>
+
+      <!-- Opções -->
+      <div id="opcoes-container" class="questionario__opcoes">
+        <!-- Botões gerados dinamicamente pelo main.js -->
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- TELA RESULTADO                                                -->
+  <!-- ============================================================ -->
+  <section id="tela-resultado" class="oculto">
+
+    <div class="resultado__container">
+
+      <div class="resultado__badge">SEU RESULTADO</div>
+
+      <div class="resultado__card">
+
+        <div class="resultado__imagem-container">
+          <img id="resultado-imagem" src="" alt="" class="resultado__imagem" />
+        </div>
+
+        <div class="resultado__info">
+          <span id="resultado-categoria" class="resultado__categoria"></span>
+          <h2 id="resultado-nome" class="resultado__nome"></h2>
+          <span id="resultado-score" class="resultado__score"></span>
+          <p id="resultado-descricao" class="resultado__descricao"></p>
+        </div>
+
+      </div>
+
+      <button id="btn-reiniciar" class="btn-primario">
+        Refazer o quiz
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- SCRIPTS                                                       -->
+  <!-- ============================================================ -->
+  <script src="js/data.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

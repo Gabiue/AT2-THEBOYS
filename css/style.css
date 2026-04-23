@@ -1,0 +1,575 @@
+/* ============================================================
+   style.css — The Boys Quiz
+   Paleta fiel aos cartazes e identidade visual da série:
+   - Preto profundo (fundo dominante)
+   - Vermelho sangue (violência, Vought, poder corrompido)
+   - Amarelo Vought (corporativo, celebridade, marketing)
+   - Azul elétrico / cobalto (superpoderes, Starlight, frieza)
+   - Azul marinho (Vought institucional, América corrompida)
+   - Branco sujo (nada é puro aqui)
+   Fonte display: Bebas Neue
+   Fonte corpo:   Barlow Condensed
+   ============================================================ */
+
+   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+   /* ----------------------------
+      Variáveis
+      ---------------------------- */
+   :root {
+     /* Pretos e cinzas */
+     --preto:          #080810;
+     --preto-medio:    #0d0d18;
+     --preto-card:     #121220;
+     --cinza-escuro:   #1a1a2e;
+     --cinza:          #2a2a40;
+     --cinza-claro:    #7a7a9a;
+     --branco-sujo:    #ddd8ee;
+     --branco:         #f0ecff;
+   
+     /* Vermelho — violência, Vought, sangue */
+     --vermelho:       #c8102e;
+     --vermelho-vivo:  #e8152f;
+     --vermelho-escuro:#7a0818;
+   
+     /* Amarelo — corporativo, fama, Vought gold */
+     --amarelo:        #f5c518;
+     --amarelo-suave:  #c8a012;
+   
+     /* Azul elétrico — superpoderes, Starlight, energia */
+     --azul-eletrico:  #1e90ff;
+     --azul-brilho:    #00bfff;
+     --azul-claro:     #4db8ff;
+   
+     /* Azul marinho — Vought institucional, América, frieza */
+     --azul-marinho:   #0a1628;
+     --azul-medio:     #0f2050;
+     --azul-cobalto:   #1a3a7a;
+   
+     /* Fontes */
+     --fonte-display:  'Bebas Neue', sans-serif;
+     --fonte-corpo:    'Barlow Condensed', sans-serif;
+   
+     /* Sombras e bordas */
+     --sombra-vermelha:  0 0 40px rgba(200, 16, 46, 0.3);
+     --sombra-azul:      0 0 40px rgba(30, 144, 255, 0.25);
+     --sombra-amarela:   0 0 20px rgba(245, 197, 24, 0.2);
+     --borda-sutil:      1px solid rgba(255,255,255,0.05);
+     --borda-azul:       1px solid rgba(30, 144, 255, 0.2);
+   }
+   
+   /* ----------------------------
+      Reset e base
+      ---------------------------- */
+   *, *::before, *::after {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+   }
+   
+   html { scroll-behavior: smooth; }
+   
+   body {
+     background-color: var(--preto);
+     color: var(--branco-sujo);
+     font-family: var(--fonte-corpo);
+     font-size: 18px;
+     min-height: 100vh;
+     overflow-x: hidden;
+   
+     /* Fundo com inclinação azul marinho — referência direta aos cartazes */
+     background-image:
+       radial-gradient(ellipse at top left, rgba(10, 22, 40, 0.9) 0%, transparent 60%),
+       radial-gradient(ellipse at bottom right, rgba(26, 58, 122, 0.15) 0%, transparent 60%),
+       url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+   }
+   
+   .oculto { display: none !important; }
+   
+   /* ----------------------------
+      Botão primário
+      ---------------------------- */
+   .btn-primario {
+     display: inline-block;
+     font-family: var(--fonte-display);
+     font-size: 1.4rem;
+     letter-spacing: 0.12em;
+     color: var(--preto);
+     background: var(--amarelo);
+     border: none;
+     padding: 16px 52px;
+     cursor: pointer;
+     clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+     transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+     text-transform: uppercase;
+   }
+   
+   .btn-primario:hover {
+     background: var(--azul-eletrico);
+     color: var(--branco);
+     box-shadow: var(--sombra-azul);
+     transform: translateY(-2px);
+   }
+   
+   .btn-primario:active {
+     transform: translateY(0);
+   }
+   
+   /* ----------------------------
+      TELA INICIAL
+      ---------------------------- */
+   #tela-inicial {
+     min-height: 100vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 48px 24px;
+     position: relative;
+     overflow: hidden;
+   
+     background-image:
+       radial-gradient(ellipse at 80% 20%, rgba(30,144,255,0.07) 0%, transparent 50%),
+       radial-gradient(ellipse at 20% 80%, rgba(200,16,46,0.07) 0%, transparent 50%);
+   }
+   
+   /* Linha lateral azul — como a faixa dos cartazes */
+   #tela-inicial::before {
+     content: '';
+     position: absolute;
+     top: 0; left: 0;
+     width: 4px;
+     height: 100%;
+     background: linear-gradient(
+       to bottom,
+       var(--azul-eletrico),
+       var(--vermelho),
+       transparent
+     );
+   }
+   
+   /* Detalhe decorativo canto direito */
+   #tela-inicial::after {
+     content: 'THE BOYS';
+     position: absolute;
+     right: -40px;
+     top: 50%;
+     transform: translateY(-50%) rotate(90deg);
+     font-family: var(--fonte-display);
+     font-size: 8rem;
+     color: rgba(30, 144, 255, 0.04);
+     letter-spacing: 0.1em;
+     pointer-events: none;
+     white-space: nowrap;
+   }
+   
+   .tela-inicial__conteudo {
+     max-width: 700px;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     gap: 28px;
+     animation: fadeUp 0.8s ease both;
+   }
+   
+   .tela-inicial__badge {
+     font-family: var(--fonte-corpo);
+     font-weight: 700;
+     font-size: 0.7rem;
+     letter-spacing: 0.35em;
+     color: var(--azul-brilho);
+     border: 1px solid var(--azul-cobalto);
+     background: rgba(30, 144, 255, 0.08);
+     padding: 5px 14px;
+     text-transform: uppercase;
+   }
+   
+   .tela-inicial__titulo {
+     font-family: var(--fonte-display);
+     font-size: clamp(5rem, 16vw, 11rem);
+     line-height: 0.88;
+     letter-spacing: 0.02em;
+     color: var(--branco);
+   
+     /* Efeito texto com sombra dupla — vermelho + azul, como nos cartazes */
+     text-shadow:
+       4px 4px 0px var(--vermelho),
+       -2px -2px 0px rgba(30, 144, 255, 0.4),
+       0 0 60px rgba(30, 144, 255, 0.1);
+   }
+   
+   .tela-inicial__subtitulo {
+     font-family: var(--fonte-corpo);
+     font-weight: 300;
+     font-size: clamp(1rem, 2.5vw, 1.4rem);
+     letter-spacing: 0.18em;
+     color: var(--cinza-claro);
+     text-transform: uppercase;
+   
+     /* Borda esquerda com gradiente vermelho → azul */
+     border-left: 3px solid transparent;
+     border-image: linear-gradient(to bottom, var(--vermelho), var(--azul-eletrico)) 1;
+     padding-left: 16px;
+   }
+   
+   .tela-inicial__descricao {
+     font-weight: 400;
+     font-size: 1rem;
+     line-height: 1.85;
+     color: var(--cinza-claro);
+     max-width: 580px;
+   }
+   
+   .tela-inicial__personagens {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 8px;
+   }
+   
+   .tela-inicial__personagens span {
+     font-family: var(--fonte-corpo);
+     font-weight: 600;
+     font-size: 0.72rem;
+     letter-spacing: 0.12em;
+     text-transform: uppercase;
+     color: var(--cinza-claro);
+     background: var(--cinza-escuro);
+     border: 1px solid var(--cinza);
+     padding: 4px 12px;
+     transition: color 0.2s, border-color 0.2s, background 0.2s;
+   }
+   
+   .tela-inicial__personagens span:hover {
+     color: var(--azul-claro);
+     border-color: var(--azul-cobalto);
+     background: rgba(30, 144, 255, 0.06);
+   }
+   
+   /* ----------------------------
+      TELA QUESTIONÁRIO
+      ---------------------------- */
+   #tela-questionario {
+     min-height: 100vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 48px 24px;
+   
+     background-image:
+       radial-gradient(ellipse at top, rgba(10, 22, 40, 0.8) 0%, transparent 70%),
+       linear-gradient(to bottom, var(--preto-medio), var(--preto));
+   }
+   
+   .questionario__container {
+     max-width: 720px;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     gap: 32px;
+     animation: fadeUp 0.5s ease both;
+   }
+   
+   .questionario__header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+   }
+   
+   .questionario__numero {
+     font-family: var(--fonte-corpo);
+     font-weight: 700;
+     font-size: 0.75rem;
+     letter-spacing: 0.28em;
+     text-transform: uppercase;
+     color: var(--cinza-claro);
+   }
+   
+   .questionario__percentual {
+     font-family: var(--fonte-display);
+     font-size: 1.3rem;
+     color: var(--azul-eletrico);
+     text-shadow: 0 0 12px rgba(30, 144, 255, 0.5);
+   }
+   
+   /* Barra de progresso — gradiente vermelho → azul → amarelo */
+   .progresso-barra__fundo {
+     width: 100%;
+     height: 3px;
+     background: var(--cinza);
+     position: relative;
+   }
+   
+   .progresso-barra__preenchimento {
+     height: 100%;
+     background: linear-gradient(
+       to right,
+       var(--vermelho),
+       var(--azul-eletrico),
+       var(--amarelo)
+     );
+     transition: width 0.5s ease;
+     box-shadow: 0 0 10px rgba(30, 144, 255, 0.6);
+   }
+   
+   /* Pergunta */
+   .questionario__pergunta-container {
+     border-left: 4px solid var(--azul-eletrico);
+     padding-left: 24px;
+     position: relative;
+   }
+   
+   .questionario__pergunta {
+     font-family: var(--fonte-corpo);
+     font-weight: 600;
+     font-size: clamp(1.2rem, 3vw, 1.65rem);
+     line-height: 1.5;
+     color: var(--branco);
+     letter-spacing: 0.02em;
+   }
+   
+   /* Opções */
+   .questionario__opcoes {
+     display: flex;
+     flex-direction: column;
+     gap: 12px;
+   }
+   
+   .opcao-btn {
+     width: 100%;
+     background: var(--preto-card);
+     border: 1px solid var(--cinza);
+     color: var(--branco-sujo);
+     font-family: var(--fonte-corpo);
+     font-weight: 400;
+     font-size: 1rem;
+     line-height: 1.6;
+     letter-spacing: 0.02em;
+     padding: 18px 24px;
+     text-align: left;
+     cursor: pointer;
+     transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s;
+     position: relative;
+     overflow: hidden;
+   }
+   
+   /* Linha lateral que aparece no hover */
+   .opcao-btn::before {
+     content: '';
+     position: absolute;
+     left: 0; top: 0;
+     height: 100%;
+     width: 3px;
+     background: linear-gradient(to bottom, var(--azul-eletrico), var(--vermelho));
+     transform: scaleY(0);
+     transition: transform 0.2s ease;
+   }
+   
+   .opcao-btn:hover:not(.desabilitado) {
+     border-color: var(--azul-cobalto);
+     background: rgba(30, 144, 255, 0.06);
+     color: var(--branco);
+     transform: translateX(4px);
+   }
+   
+   .opcao-btn:hover:not(.desabilitado)::before {
+     transform: scaleY(1);
+   }
+   
+   /* Estado selecionado — amarelo Vought */
+   .opcao-btn.selecionado {
+     border-color: var(--amarelo-suave);
+     background: rgba(245, 197, 24, 0.07);
+     color: var(--amarelo);
+   }
+   
+   .opcao-btn.selecionado::before {
+     background: var(--amarelo);
+     transform: scaleY(1);
+   }
+   
+   .opcao-btn.desabilitado {
+     cursor: not-allowed;
+     opacity: 0.4;
+   }
+   
+   .opcao-btn.selecionado.desabilitado {
+     opacity: 1;
+   }
+   
+   /* ----------------------------
+      TELA RESULTADO
+      ---------------------------- */
+   #tela-resultado {
+     min-height: 100vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 48px 24px;
+   
+     background-image:
+       radial-gradient(ellipse at top left, rgba(30,144,255,0.08) 0%, transparent 50%),
+       radial-gradient(ellipse at bottom right, rgba(200,16,46,0.07) 0%, transparent 50%),
+       linear-gradient(to bottom, var(--preto), var(--azul-marinho));
+   }
+   
+   .resultado__container {
+     max-width: 820px;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 32px;
+     animation: fadeUp 0.7s ease both;
+   }
+   
+   .resultado__badge {
+     font-family: var(--fonte-corpo);
+     font-weight: 700;
+     font-size: 0.7rem;
+     letter-spacing: 0.38em;
+     color: var(--azul-brilho);
+     text-transform: uppercase;
+     border: 1px solid var(--azul-cobalto);
+     background: rgba(30, 144, 255, 0.06);
+     padding: 5px 16px;
+     text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+   }
+   
+   /* Card do resultado */
+   .resultado__card {
+     width: 100%;
+     background: var(--preto-card);
+     border: var(--borda-sutil);
+   
+     /* Borda superior com gradiente azul → vermelho → amarelo */
+     border-top: 3px solid transparent;
+     border-image: linear-gradient(
+       to right,
+       var(--azul-eletrico),
+       var(--vermelho),
+       var(--amarelo)
+     ) 1;
+   
+     display: grid;
+     grid-template-columns: 260px 1fr;
+     overflow: hidden;
+     box-shadow:
+       var(--sombra-azul),
+       var(--sombra-vermelha);
+   }
+   
+   .resultado__imagem-container {
+     background: var(--azul-marinho);
+     overflow: hidden;
+     max-height: 440px;
+   }
+   
+   .resultado__imagem {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     object-position: top center;
+     filter: grayscale(15%) contrast(1.08) saturate(0.9);
+     transition: filter 0.4s;
+   }
+   
+   .resultado__imagem:hover {
+     filter: grayscale(0%) contrast(1.1) saturate(1.1);
+   }
+   
+   .resultado__info {
+     padding: 40px 36px;
+     display: flex;
+     flex-direction: column;
+     gap: 16px;
+     justify-content: center;
+     background: linear-gradient(
+       135deg,
+       var(--preto-card) 0%,
+       rgba(10, 22, 40, 0.8) 100%
+     );
+   }
+   
+   .resultado__categoria {
+     font-family: var(--fonte-corpo);
+     font-weight: 700;
+     font-size: 0.75rem;
+     letter-spacing: 0.22em;
+     text-transform: uppercase;
+     color: var(--azul-claro);
+   }
+   
+   .resultado__nome {
+     font-family: var(--fonte-display);
+     font-size: clamp(2.5rem, 6vw, 4.5rem);
+     line-height: 0.92;
+     color: var(--branco);
+     letter-spacing: 0.02em;
+     text-shadow:
+       3px 3px 0px var(--vermelho),
+       -1px -1px 0px rgba(30, 144, 255, 0.4);
+   }
+   
+   .resultado__score {
+     font-family: var(--fonte-corpo);
+     font-weight: 700;
+     font-size: 0.75rem;
+     letter-spacing: 0.22em;
+     text-transform: uppercase;
+     color: var(--amarelo);
+     text-shadow: 0 0 10px rgba(245, 197, 24, 0.3);
+   }
+   
+   .resultado__descricao {
+     font-weight: 400;
+     font-size: 0.95rem;
+     line-height: 1.85;
+     color: var(--cinza-claro);
+     border-top: 1px solid var(--cinza);
+     padding-top: 20px;
+     font-style: italic;
+   }
+   
+   /* ----------------------------
+      Animações
+      ---------------------------- */
+   @keyframes fadeUp {
+     from {
+       opacity: 0;
+       transform: translateY(28px);
+     }
+     to {
+       opacity: 1;
+       transform: translateY(0);
+     }
+   }
+   
+   /* ----------------------------
+      Responsivo
+      ---------------------------- */
+   @media (max-width: 620px) {
+     .resultado__card {
+       grid-template-columns: 1fr;
+     }
+   
+     .resultado__imagem-container {
+       max-height: 260px;
+     }
+   
+     .resultado__info {
+       padding: 28px 22px;
+     }
+   
+     .tela-inicial__titulo {
+       font-size: clamp(3.5rem, 22vw, 6rem);
+     }
+   
+     .opcao-btn {
+       font-size: 0.95rem;
+       padding: 14px 18px;
+     }
+   
+     #tela-inicial::after {
+       display: none;
+     }
+   }
