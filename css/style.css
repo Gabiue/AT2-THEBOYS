@@ -11,7 +11,6 @@
    Fonte corpo:   Barlow Condensed
    ============================================================ */
 
-
    /* ----------------------------
       Variáveis
       ---------------------------- */
@@ -74,6 +73,9 @@
      font-family: var(--fonte-corpo);
      font-size: 18px;
      min-height: 100vh;
+     min-height: 100dvh;
+     display: flex;
+     flex-direction: column;
      overflow-x: hidden;
    
      /* Fundo com inclinação azul marinho — referência direta aos cartazes */
@@ -113,22 +115,42 @@
    .btn-primario:active {
      transform: translateY(0);
    }
+
+   .btn-primario:focus {
+     outline: none;
+   }
+
+   .btn-primario:focus-visible {
+     outline: 2px solid var(--azul-eletrico);
+     outline-offset: 4px;
+     box-shadow: var(--sombra-azul);
+   }
    
    /* ----------------------------
       TELA INICIAL
       ---------------------------- */
    #tela-inicial {
-     min-height: 100vh;
      display: flex;
      align-items: center;
      justify-content: center;
-     padding: 48px 24px;
+     padding:
+       max(48px, env(safe-area-inset-top, 0px))
+       max(24px, env(safe-area-inset-right, 0px))
+       max(48px, env(safe-area-inset-bottom, 0px))
+       max(24px, env(safe-area-inset-left, 0px));
      position: relative;
      overflow: hidden;
-   
+
      background-image:
+       linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+       linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
        radial-gradient(ellipse at 80% 20%, rgba(30,144,255,0.07) 0%, transparent 50%),
        radial-gradient(ellipse at 20% 80%, rgba(200,16,46,0.07) 0%, transparent 50%);
+     background-size:
+       48px 48px,
+       48px 48px,
+       auto,
+       auto;
    }
    
    /* Linha lateral azul — como a faixa dos cartazes */
@@ -168,7 +190,8 @@
      flex-direction: column;
      align-items: flex-start;
      gap: 28px;
-     animation: fadeUp 0.8s ease both;
+     position: relative;
+     z-index: 1;
    }
    
    .tela-inicial__badge {
@@ -234,7 +257,10 @@
      color: var(--cinza-claro);
      background: var(--cinza-escuro);
      border: 1px solid var(--cinza);
-     padding: 4px 12px;
+     padding: 8px 14px;
+     min-height: 44px;
+     display: inline-flex;
+     align-items: center;
      transition: color 0.2s, border-color 0.2s, background 0.2s;
    }
    
@@ -248,12 +274,15 @@
       TELA QUESTIONÁRIO
       ---------------------------- */
    #tela-questionario {
-     min-height: 100vh;
      display: flex;
      align-items: center;
      justify-content: center;
-     padding: 48px 24px;
-   
+     padding:
+       max(48px, env(safe-area-inset-top, 0px))
+       max(24px, env(safe-area-inset-right, 0px))
+       max(48px, env(safe-area-inset-bottom, 0px))
+       max(24px, env(safe-area-inset-left, 0px));
+
      background-image:
        radial-gradient(ellipse at top, rgba(10, 22, 40, 0.8) 0%, transparent 70%),
        linear-gradient(to bottom, var(--preto-medio), var(--preto));
@@ -265,7 +294,6 @@
      display: flex;
      flex-direction: column;
      gap: 32px;
-     animation: fadeUp 0.5s ease both;
    }
    
    .questionario__header {
@@ -293,9 +321,11 @@
    /* Barra de progresso — gradiente vermelho → azul → amarelo */
    .progresso-barra__fundo {
      width: 100%;
-     height: 3px;
+     height: 5px;
      background: var(--cinza);
      position: relative;
+     border-radius: 2px;
+     overflow: hidden;
    }
    
    .progresso-barra__preenchimento {
@@ -335,6 +365,7 @@
    
    .opcao-btn {
      width: 100%;
+     min-height: 48px;
      background: var(--preto-card);
      border: 1px solid var(--cinza);
      color: var(--branco-sujo);
@@ -349,6 +380,18 @@
      transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s;
      position: relative;
      overflow: hidden;
+     animation: opcaoEntra 0.42s ease both;
+     animation-delay: calc(var(--opcao-index, 0) * 0.055s);
+   }
+
+   .opcao-btn:focus {
+     outline: none;
+   }
+
+   .opcao-btn:focus-visible {
+     outline: 2px solid var(--amarelo);
+     outline-offset: 2px;
+     z-index: 1;
    }
    
    /* Linha lateral que aparece no hover */
@@ -399,12 +442,15 @@
       TELA RESULTADO
       ---------------------------- */
    #tela-resultado {
-     min-height: 100vh;
      display: flex;
      align-items: center;
      justify-content: center;
-     padding: 48px 24px;
-   
+     padding:
+       max(48px, env(safe-area-inset-top, 0px))
+       max(24px, env(safe-area-inset-right, 0px))
+       max(48px, env(safe-area-inset-bottom, 0px))
+       max(24px, env(safe-area-inset-left, 0px));
+
      background-image:
        radial-gradient(ellipse at top left, rgba(30,144,255,0.08) 0%, transparent 50%),
        radial-gradient(ellipse at bottom right, rgba(200,16,46,0.07) 0%, transparent 50%),
@@ -418,7 +464,6 @@
      flex-direction: column;
      align-items: center;
      gap: 32px;
-     animation: fadeUp 0.7s ease both;
    }
    
    .resultado__badge {
@@ -496,6 +541,7 @@
      letter-spacing: 0.22em;
      text-transform: uppercase;
      color: var(--azul-claro);
+     order: 0;
    }
    
    .resultado__nome {
@@ -507,16 +553,20 @@
      text-shadow:
        3px 3px 0px var(--vermelho),
        -1px -1px 0px rgba(30, 144, 255, 0.4);
+     order: 1;
    }
    
    .resultado__score {
      font-family: var(--fonte-corpo);
-     font-weight: 700;
-     font-size: 0.75rem;
-     letter-spacing: 0.22em;
+     font-weight: 600;
+     font-size: 0.65rem;
+     letter-spacing: 0.14em;
      text-transform: uppercase;
-     color: var(--amarelo);
-     text-shadow: 0 0 10px rgba(245, 197, 24, 0.3);
+     color: var(--cinza-claro);
+     order: 3;
+     margin-top: 4px;
+     padding-top: 12px;
+     border-top: 1px solid rgba(42, 42, 64, 0.6);
    }
    
    .resultado__descricao {
@@ -527,20 +577,60 @@
      border-top: 1px solid var(--cinza);
      padding-top: 20px;
      font-style: italic;
+     order: 2;
    }
    
+   .site-footer {
+     flex-shrink: 0;
+     margin-top: auto;
+     padding:
+       20px 16px
+       max(20px, env(safe-area-inset-bottom, 0px));
+     text-align: center;
+     border-top: var(--borda-sutil);
+     background: rgba(8, 8, 16, 0.85);
+   }
+
+   .site-footer__text {
+     font-family: var(--fonte-corpo);
+     font-size: 0.7rem;
+     font-weight: 600;
+     letter-spacing: 0.18em;
+     text-transform: uppercase;
+     color: var(--cinza);
+   }
+
    /* ----------------------------
       Animações
       ---------------------------- */
-   @keyframes fadeUp {
+   @keyframes fadeInScreen {
      from {
        opacity: 0;
-       transform: translateY(28px);
+       transform: translateY(12px);
      }
      to {
        opacity: 1;
        transform: translateY(0);
      }
+   }
+
+   @keyframes opcaoEntra {
+     from {
+       opacity: 0;
+       transform: translateX(-10px);
+     }
+     to {
+       opacity: 1;
+       transform: translateX(0);
+     }
+   }
+
+   #tela-inicial:not(.oculto),
+   #tela-questionario:not(.oculto),
+   #tela-resultado:not(.oculto) {
+     flex: 1 1 auto;
+     min-height: 0;
+     animation: fadeInScreen 0.36s ease both;
    }
    
    /* ----------------------------
@@ -565,10 +655,44 @@
    
      .opcao-btn {
        font-size: 0.95rem;
-       padding: 14px 18px;
+       padding: 16px 18px;
+       min-height: 48px;
+     }
+
+     .progresso-barra__fundo {
+       height: 6px;
      }
    
      #tela-inicial::after {
        display: none;
+     }
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+     html {
+       scroll-behavior: auto;
+     }
+
+     #tela-inicial:not(.oculto),
+     #tela-questionario:not(.oculto),
+     #tela-resultado:not(.oculto) {
+       animation: none;
+     }
+
+     .opcao-btn {
+       animation: none !important;
+     }
+
+     .btn-primario:hover,
+     .opcao-btn:hover:not(.desabilitado) {
+       transform: none;
+     }
+
+     .progresso-barra__preenchimento {
+       transition: none;
+     }
+
+     .resultado__imagem {
+       transition: none;
      }
    }
