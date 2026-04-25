@@ -99,24 +99,8 @@ O quiz utiliza um sistema duplo de pontuação:
 - Controle de fluxo (loops, condicionais)
 - Métodos de array (`forEach`, `filter`, `map`)
 
-## Acessibilidade
-
-- Labels ARIA para leitores de tela
-- Semântica HTML adequada
-- Suporte a `prefers-reduced-motion`
-- Contraste de cores apropriado
-- Navegação por teclado
-
-## SEO
-
-- Meta tags descritivas
-- Open Graph para redes sociais
-- Twitter Cards
-- Favicon SVG
-- Estrutura semântica
-
-## Autor
-
+## Autor(es)
+Gabriel Kaue e Geovane Saraiva
 Projeto acadêmico desenvolvido para UCB (5º Semestre) - 2026
 
 ## Licença
