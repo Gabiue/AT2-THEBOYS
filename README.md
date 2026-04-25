@@ -64,7 +64,7 @@ AT2-TheBoys/
 
 1. Clone o repositório:
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/Gabiue/AT2-THEBOYS
 ```
 
 2. Navegue até a pasta do projeto:
