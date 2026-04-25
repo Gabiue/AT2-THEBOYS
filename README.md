@@ -44,7 +44,6 @@ AT2-TheBoys/
 │   ├── quiz.js            # Lógica de pontuação (POO)
 │   └── main.js            # Manipulação do DOM
 └── assets/
-    ├── favicon.svg
     └── images/            # Imagens dos personagens
 ```
 
